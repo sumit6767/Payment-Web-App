@@ -1,0 +1,25 @@
+input{
+    outline: none;
+    border:none;
+}
+
+.box{
+    border-radius: 20px;
+    background-color: hwb(0 100% 0% / 0.375);
+    box-shadow: 2px 5px 13px rgb(147, 146, 146);
+}
+.gif{
+    position: relative;
+    left: 30%;
+    width: 40%;
+}
+.transaction:hover{
+    background-color: rgb(215, 250, 162);
+    border-radius: 100px;
+    cursor: pointer;
+}
+.balance{
+    cursor: pointer;
+    font-family: cursive;
+    color:darkblue
+}
