@@ -10,21 +10,23 @@
     <link rel="icon" href="/7123945_logo_pay_google_gpay_icon.png" sizes="256X256">
     <link rel="stylesheet" href="./">
     <style media="screen">
-        input{
-            border:none;
-            outline: none;
-            border:1px solid blue;
+        #submit{
+            background-color: lightgray;
+        }
+        #submit:hover{
+            background-image: linear-gradient(orange,yellow);
+            color:whitesmoke;
         }
     </style>
 </head>
 <body>
     <iframe src="header.html" onload="this.before((this.contentDocument.body||this.contentDocument).children[0]);this.remove()"></iframe>
     <div class="container-fluid mt-3">
-        <div class="col fs-4 mb-4">
+        <div class="col fs-4 mb-4 fw-medium">
             Enter recipient details
         </div>
 
-        <form action="" method="get" class="recep">
+        <form action="" method="post" class="recep">
             <div class="form-floating ms-0 m-2">
                 <input type="number" placeholder="Enter account number" id="account" class="form-control" required>
                 <label for="account">Enter account number</label>
@@ -41,16 +43,40 @@
                 <input type="text" placeholder="Enter account number" id="name" class="form-control" required>
                 <label for="name">Recipient Name</label>
             </div>
+            <button class="form-control rounded-5 fw-bolder fs-5" id="submit">Submit</button>
         </form>
-        <button class="form-control rounded-5 bg-dark-subtle">Submit</button>
+
+        <div class="col m-3 ms-0">
+            <h4>Recent Bank Transfers</h4>
+            <div class="float-start">
+                <div class="border border-2 float-start">Hame</div>
+                <div class="border border-2 float-start">ham</div>
+                <div class="border border-2 float-start">s</div>
+                <div class="border border-2 float-start">a</div>
+                <div class="border border-2 float-start">m</div>
+            </div>
+        </div>
     </div>
     <script>
-        const form = document.querySelector(".recep");
-        const number1 = document.getElementById("account")
-        const number2 = document.getElementById("confirmaccount")
-        const account = document.querySelector(".account")
-        form.addEventListener("submit",(e)=>{
-            
+        const obj = document.querySelector(".recep");
+        const first = document.querySelector("#account");
+        const second = document.querySelector("#confirmaccount"); 
+        obj.addEventListener("submit",(e)=>{
+            if(first.value != second.value){
+                e.preventDefault();
+                if(second.nextElementSibling.innerText === "Enter correct bank account number !"){
+                    second.nextElementSibling.remove()
+                }
+                const feedback = document.createElement("div");
+
+                setTimeout(()=>{
+                feedback.innerHTML = `<p class="text-danger p-1 fw-medium fade show">Enter correct bank account number !</p>`
+                second.insertAdjacentElement("afterend",feedback);
+                },500)
+            }
+            else{
+
+            }
         })
     </script>
 </body>
