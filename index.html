@@ -9,6 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous" defer></script>
     <link rel="icon" href="/7123945_logo_pay_google_gpay_icon.png" sizes="256X256">
     <link rel="stylesheet" href="./payment.css">
+    <script src="./payment.js" type ="text/javascript" defer></script>
 </head>
 <body>
     <iframe src="header.html" onload="this.before((this.contentDocument.body||this.contentDocument).children[0]);this.remove()"></iframe>
@@ -114,7 +115,7 @@
                     <div class="modal-content">
                         <div class="modal-body">
                             <div class="border border-2 border-danger">
-                                <div class="balance p-3 me-5 w-100 border border-bottom-1" data-bs-target="#modal" data-bs-toggle="modal">
+                                <div class="balance p-3 me-5 w-100 border border-bottom-1" id="bankaccount" data-bs-target="#bank" data-bs-toggle="modal">
                                     <div class="row">
                                         <div class="col-1 float-start d-flex justify-content-center align-items-center">
                                             <img src="https://img.icons8.com/external-smashingstocks-glyph-smashing-stocks/32/null/external-bank-web-smashingstocks-glyph-smashing-stocks.png"/>
@@ -127,7 +128,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="balance p-3 me-5 w-100" data-bs-target="#modal" data-bs-toggle="modal">
+                                <div class="balance p-3 me-5 w-100" data-bs-target="#wallet" id="walletaccount" data-bs-toggle="modal">
                                     <div class="row">
                                         <div class="col-1 float-start d-flex justify-content-center align-items-center">
                                             <img src="https://img.icons8.com/color/24/null/wallet--v1.png"/>
@@ -147,18 +148,6 @@
             </div>
     </div>
     <script>
-        const obj = document.querySelector("input");
-        let count = 0;
-        setInterval(()=>{
-            if(count==0){
-                obj.setAttribute("placeholder","Pay by name or phone number")
-                count++;
-            }
-            else{
-                obj.setAttribute("placeholder","Pay friends and merchant")
-                count=0;
-            }
-        },2000)
     </script>
 </body>
 </html>

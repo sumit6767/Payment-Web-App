@@ -14,7 +14,7 @@
             background-color: lightgray;
         }
         #submit:hover{
-            background-image: linear-gradient(orange,yellow);
+            background-image: linear-gradient(rgb(242, 123, 121),yellow);
             color:whitesmoke;
         }
     </style>
@@ -31,9 +31,12 @@
                 <input type="number" placeholder="Enter account number" id="account" class="form-control" required>
                 <label for="account">Enter account number</label>
             </div>
-            <div class="form-floating ms-0 m-2 account">
-                <input type="number" placeholder="Enter account number" id="confirmaccount" class="form-control" required>
-                <label for="confirmaccount">Re-enter account number</label>
+            <div class="input-group ms-0 m-2 account">
+                <div class="form-floating">
+                    <input type="password" placeholder="Enter account number" id="confirmaccount" class="form-control" required>
+                    <label for="confirmaccount">Re-enter account number</label>
+                </div>
+                <span class="eye border border-1" style="cursor:pointer;"><img src="eye1.gif" alt="" width="50"></span>
             </div>
             <div class="form-floating ms-0 m-2">
                 <input type="text" placeholder="Enter account number" id="ifsc" class="form-control" required>
@@ -45,7 +48,9 @@
             </div>
             <button class="form-control rounded-5 fw-bolder fs-5" id="submit">Submit</button>
         </form>
-
+        <div class="mt-2">
+            <p class="text-center fs-6 text-dark-emphasis">This information will be securely saved as per Google Pay Terms of Service and Privacy Policy.</p>
+        </div>
         <div class="col m-3 ms-0">
             <h4>Recent Bank Transfers</h4>
             <div class="float-start">
@@ -60,22 +65,45 @@
     <script>
         const obj = document.querySelector(".recep");
         const first = document.querySelector("#account");
-        const second = document.querySelector("#confirmaccount"); 
+        const second = document.querySelector("#confirmaccount");
         obj.addEventListener("submit",(e)=>{
+            if(second.nextElementSibling.innerText === "Enter correct bank account number !"){
+                    second.nextElementSibling.remove()
+                    obj.children[1].classList.remove("border")
+                    obj.children[1].classList.remove("border-danger")
+                    obj.children[1].classList.remove("rounded-2");
+                }
             if(first.value != second.value){
                 e.preventDefault();
-                if(second.nextElementSibling.innerText === "Enter correct bank account number !"){
-                    second.nextElementSibling.remove()
-                }
                 const feedback = document.createElement("div");
-
+                obj.children[1].classList.add("border");
+                obj.children[1].classList.add("border-danger")
+                obj.children[1].classList.add("rounded-2")
                 setTimeout(()=>{
                 feedback.innerHTML = `<p class="text-danger p-1 fw-medium fade show">Enter correct bank account number !</p>`
                 second.insertAdjacentElement("afterend",feedback);
                 },500)
             }
             else{
+               
+            }
+            
+        })
 
+        const eye = document.querySelector(".eye");
+        let i = 0;
+        eye.addEventListener("click",(e)=>{
+            if(i === 0){
+                second.setAttribute("type","text");
+                e.currentTarget.children[0].setAttribute("src","eye2.gif")
+                e.currentTarget.children[0].setAttribute("width","55")
+                i++;
+            }
+            else{
+                second.setAttribute("type","password");
+                e.currentTarget.children[0].setAttribute("src","eye1.gif")
+                e.currentTarget.children[0].setAttribute("width","50")
+                i=0;
             }
         })
     </script>
